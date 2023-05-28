@@ -36,7 +36,7 @@ int print_unsigned(va_list types, char buffer[],
 
 	a++;
 
-	return (write_ unsgnd(0, a, buffer, flags, width, precision, size));
+	return (write_unsgnd(0, a, buffer, flags, width, precision, size));
 }
 
 
@@ -63,32 +63,27 @@ int print_octal(va_list types, char buffer[],
 	unsigned long int init_num =
 		num;
 
-	UNUSED WIDTH(width);
+	UNUSED(width);
 
-	num =
-		convert_size_unsgnd(num, size);
+	num = convert_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[a--] = '0';
 
-	buffer[BUFFER_SIZE - 1] = '\0';
-
+	buffer[BUFF_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
-		buffer[a--] = map_to[num % 16];
-		num /= 16;
+		buffer[a--] = (num % 8) + 0;
+		num /= 8;
 	}
 
 	if (flags & F_HASH && init_num != 0)
-	{
-		buffer[a--] = flag_ch;
 		buffer[a--] = '0';
-	}
 
 	a++;
 
-	return (write_unsgnd(0, 1, buffer, flags, width, precision, size));
+	return (write_unsgnd(0, a, buffer, flags, width, precision, size));
 }
 
 /************************ PRINT UNSIGNED NUMBER IN HEXADECIMAL ***************/
@@ -156,12 +151,12 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 
 	UNUSED(width);
 
-	num = convert_size_ unsgnd(num, size);
+	num = convert_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[a--] = '0';
 
-	buffer[BUFFER_SIZE - 1] = '\0';
+	buffer[BUFF_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
@@ -172,9 +167,8 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 	if (flags & F_HASH && init_num != 0)
 	{
 		buffer[a--] = flag_ch;
-		buffer[a--] = '0',
+		buffer[a--] = '0';
 	}
-
 	a++;
 
 	return (write_unsgnd(0, a, buffer, flags, width, precision, size));

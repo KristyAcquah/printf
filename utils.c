@@ -32,7 +32,7 @@ int append_hexa_code(char ascci_code, char buffer[], int i)
 	buffer[i++] = 'X';
 
 	buffer[i++] = map_to[ascci_code / 16];
-	buffer[i] = map_tyo[ascci_code % 16];
+	buffer[i] = map_to[ascci_code % 16];
 
 	return (3);
 }

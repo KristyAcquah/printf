@@ -35,7 +35,7 @@ int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length, i = 0;
-	char *str = va_arg(type, char *);
+	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -53,7 +53,8 @@ int print_string(va_list types, char buffer[],
 	while (str[length] != '\0')
 		length++;
 	if (precision >= 0 && precision < length)
-		length = precison;
+		length = precision;
+
 	if (width > length)
 	{
 		if (flags & F_MINUS)
