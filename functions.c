@@ -77,7 +77,7 @@ int print_string(va_list types, char buffer[],
 	return (write(1, str, length));
 }
 
-/******************** PRINTING PERCENTAGE SIGN *************/
+/********** PRINTING PERCENTAGE SIGN *********/
 
 /**
  * print_percent - Prints percentage sign
